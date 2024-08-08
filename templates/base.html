@@ -11,11 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=7">
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <title>House App - {% block title %}{% endblock %}</title>
+    {% bootstrap_css %}
 </head>
 <body>
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
+    {% bootstrap_javascript %}
 </body>
 </html>
