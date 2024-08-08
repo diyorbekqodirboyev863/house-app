@@ -2,6 +2,31 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the House App!</h1>
-    <p>This is a simple Django application that allows you to manage your household expenses.</p>
+    <h1 class="d-flex gap-2"><ion-icon name="planet"></ion-icon> Home</h1>
+    <div class="row">
+        <div class="col-9">
+            <div>
+                <p class="lead">Find a comfortable and suitable house using all search options.</p>
+                <form class="d-flex input-group input-group-lg" role="search">
+                    <select class="form-control" name="" id="">
+                        <option value="">All Categories</option>
+                        <option value="">House</option>
+                        <option value="">Rooms</option>
+                        <option value="">Business</option>
+                        <option value="">Land</option>
+                    </select>
+                    <select class="form-control" name="" id="">
+                        <option value="sale">Sale</option>
+                        <option value="rent">Rent</option>
+                    </select>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                    <a class="btn btn-outline-primary" href="#"><ion-icon name="map"></ion-icon> Map</a>
+                </form>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
 {% endblock %}
