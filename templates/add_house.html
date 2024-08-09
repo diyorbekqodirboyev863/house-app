@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Add{% endblock %}
+
+{% block content %}
+    <div class="mb-3 col-md-8 offset-md-2">
+        <h1>Add New House</h1>
+        <p class="text-secondary">Enter the properties of the new house and add it to the row of houses!</p>
+        <form class="d-grid" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Add House</button>
+        </form>
+    </div>
+{% endblock %}

@@ -6,11 +6,11 @@
         <p class="text-secondary">Find a comfortable and suitable house using all search options.</p>
         <form class="d-flex input-group input-group-lg" role="search">
             <select class="form-control" name="" id="">
-                <option value="">All Categories</option>
-                <option value="">House</option>
-                <option value="">Rooms</option>
-                <option value="">Business</option>
-                <option value="">Land</option>
+                {% if categories %}
+                    {% for category in categories %}
+                        <option value="{{ category.slug }}">{{ category.name }}</option>
+                    {% endfor %}
+                {% endif %}
             </select>
             <select class="form-control" name="" id="">
                 <option value="sale">Sale</option>

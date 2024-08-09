@@ -6,14 +6,14 @@ class ImageInline(admin.TabularInline):
     model = Image
     extra = 3
 
+@admin.register(House)
 class HouseAdmin(admin.ModelAdmin):
+    list_display = ['title', 'price', 'location', 'category']
+    list_filter = ['category']
     inlines = [ImageInline]
 
-admin.site.register(House, HouseAdmin)
 
 # Register Category.
-
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-
-admin.site.register(Category, CategoryAdmin)
+    prepopulated_fields = {'slug': ('name',)}
