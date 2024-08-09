@@ -10,7 +10,7 @@ def home(request):
     return render(request=request, template_name='home.html', context={'houses': houses, 'categories': categories})
 
 # Add house.
-def add_house(request):
+def add(request):
     if request.method == 'POST':
         form = HouseForm(request.POST, request.FILES)
         if form.is_valid():
@@ -22,4 +22,9 @@ def add_house(request):
                 message='Failed to add house. Please make sure all required fields are filled correctly.')
     else:
         form = HouseForm()
-    return render(request=request, template_name='add_house.html', context={'form': form})
+    return render(request=request, template_name='add.html', context={'form': form})
+
+# House details.
+def details(request, id):
+    house = House.objects.get(id=id)
+    return render(request=request, template_name='details.html', context={'house': house})

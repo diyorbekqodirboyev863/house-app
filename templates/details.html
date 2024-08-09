@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Details{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-6">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for image in house.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ house.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-6">
+            <h1>{{ house.title }}</h1>
+            <hr class="border border-primary border-1 opacity-75">
+            <table class="table table-striped table-dark">
+                <tbody>
+                    <tr>
+                        <th scope="row">Price</th>
+                        <td>${{ house.price }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Location</th>
+                        <td>{{ house.location }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">House Type</th>
+                        <td>{{ house.house_type }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bedrooms</th>
+                        <td>{{ house.bedrooms }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bathrooms</th>
+                        <td>{{ house.bathrooms }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Square Feet</th>
+                        <td>{{ house.square_feet }} sq ft</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Posted On</th>
+                        <td>{{ house.posted_on|date:"F j, Y" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Posted By</th>
+                        <td>{{ house.posted_by }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>{{ house.description }}</p>
+        </div>
+    </div>
+{% endblock %}
