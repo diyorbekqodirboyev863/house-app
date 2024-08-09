@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image, Category, House
+from .models import House, Image
 
 class HouseForm(forms.ModelForm):
     image = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'}), required=True)
@@ -23,8 +23,8 @@ class HouseForm(forms.ModelForm):
         }
 
     def save(self, *args, **kwargs):
-        instance = super(HouseForm, self).save(*args, **kwargs)
-        images = self.files.getlist('image')
+        instance = super().save(*args, **kwargs)
+        images = self.files.getlist('images')
         for image in images:
             Image.objects.create(house=instance, image=image)
         return instance

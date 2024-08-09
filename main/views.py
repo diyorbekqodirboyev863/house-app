@@ -5,7 +5,7 @@ from .forms import HouseForm
 
 # Home.
 def home(request):
-    houses = House.objects.all()
+    houses = House.objects.filter(house_type=House.SALE)
     categories = Category.objects.all()
     return render(request=request, template_name='home.html', context={'houses': houses, 'categories': categories})
 
