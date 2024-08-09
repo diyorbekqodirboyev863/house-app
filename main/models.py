@@ -1,6 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from django.utils import timezone
+
+# Category.
+class Category(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 # House.
 class House(models.Model):
@@ -20,6 +36,7 @@ class House(models.Model):
     square_feet = models.IntegerField()
     posted_by = models.ForeignKey(to=User, on_delete=models.CASCADE)
     posted_on = models.DateTimeField(default=timezone.now)
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         self.title = self.title.title()
